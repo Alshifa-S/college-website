@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<title>Alshifa - MCA Project Documentation - Prompt Engineering</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: A4 portrait;
+    margin: 18mm 16mm 20mm 16mm;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+    line-height: 1.65;
+    font-size: 10.5pt;
+    background: #ffffff;
+  }
+
+  /* Cover Page */
+  .cover-page {
+    min-height: 980px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 3px double #0a192f;
+    padding: 44px 38px;
+    page-break-after: always;
+    break-after: page;
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 70%);
+  }
+
+  .cover-header {
+    text-align: center;
+    border-bottom: 2px solid #0a192f;
+    padding-bottom: 22px;
+  }
+
+  .cover-inst-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 20pt;
+    font-weight: 800;
+    color: #0a192f;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .cover-inst-sub {
+    font-size: 10pt;
+    color: #b38f2a;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 6px;
+  }
+
+  .cover-body {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: #0a192f;
+    color: #d4af37;
+    font-size: 9.5pt;
+    font-weight: 700;
+    padding: 6px 20px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    border: 1px solid #d4af37;
+  }
+
+  .cover-project-title {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 17pt;
+    font-weight: 800;
+    color: #0a192f;
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+
+  .cover-project-sub {
+    font-size: 11pt;
+    color: #475569;
+    max-width: 580px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  .cover-details-box {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 24px 30px;
+    margin-top: 36px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .details-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5pt;
+  }
+
+  .details-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .details-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .details-table td.label {
+    font-weight: 700;
+    color: #0a192f;
+    width: 36%;
+    text-align: left;
+  }
+
+  .details-table td.value {
+    color: #1e293b;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .cover-footer {
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 18px;
+    font-size: 9pt;
+    color: #64748b;
+  }
+
+  /* General Document Styles */
+  .page {
+    page-break-after: always;
+    break-after: page;
+    margin-bottom: 24px;
+  }
+
+  h1.section-heading {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 15pt;
+    font-weight: 800;
+    color: #0a192f;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 6px;
+    margin: 26px 0 14px;
+  }
+
+  h2.sub-heading {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 20px 0 8px;
+  }
+
+  p {
+    margin-bottom: 10px;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin-left: 24px;
+    margin-bottom: 12px;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+
+  /* Academic Tables */
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 20px;
+    font-size: 9.5pt;
+  }
+
+  table.data-table th, table.data-table td {
+    border: 1px solid #cbd5e1;
+    padding: 9px 12px;
+    text-align: left;
+  }
+
+  table.data-table th {
+    background-color: #0a192f;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 9.5pt;
+  }
+
+  table.data-table tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  /* Code & Pre */
+  pre, code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  pre {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 8.5pt;
+    overflow-x: auto;
+    margin: 12px 0 16px;
+    line-height: 1.45;
+  }
+
+  code {
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 9pt;
+  }
+
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  /* Callout boxes */
+  .callout {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 9.5pt;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .callout-blue {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 9.5pt;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Table of Contents */
+  .toc-list {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px dotted #cbd5e1;
+    font-weight: 500;
+    font-size: 10pt;
+  }
+
+  .toc-item span.num {
+    font-weight: 700;
+    color: #0a192f;
+    margin-right: 8px;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    body {
+      background: #ffffff !important;
+      padding: 0 !important;
+    }
+    .cover-page {
+      border: 3px double #0a192f !important;
+    }
+  }
+
+  .no-print-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    background: #0a192f;
+    color: #ffffff;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #d4af37;
+    margin-bottom: 24px;
+  }
+
+  .btn-print-pdf {
+    background: linear-gradient(135deg, #d4af37 0%, #b38f2a 100%);
+    color: #0a192f;
+    font-weight: 800;
+    font-size: 10.5pt;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s;
+  }
+
+  .btn-print-pdf:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating Print Action Bar (Hidden in Printed PDF) -->
+<div class="no-print no-print-bar">
+  <div>
+    <strong style="color: #d4af37; font-size: 11pt;">Project Documentation Report</strong>
+    <span style="color: #cbd5e1; margin-left: 10px; font-size: 9.5pt;">Candidate: Alshifa (RRN: 250282601011) &bull; MCA 'A' Final Year &bull; Prompt Engineering</span>
+  </div>
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <a href="/" style="color: #cbd5e1; text-decoration: underline; font-size: 9.5pt;">&larr; Return to College Website</a>
+    <button class="btn-print-pdf" onclick="window.print()">🖨️ Save as PDF / Print</button>
+  </div>
+</div>
+<div class=cover-page>
+  <div class=cover-header>
+    <div class=cover-inst-title>DEPARTMENT OF COMPUTER APPLICATIONS</div>
+    <div class=cover-inst-sub>Master of Computer Applications (MCA) Program</div>
+  </div>
+
+  <div class=cover-body>
+    <div class=cover-badge>Course: Prompt Engineering</div>
+    <h1 class=cover-project-title>
+      DESIGN &amp; IMPLEMENTATION OF AN AUTONOMOUS COLLEGE MANAGEMENT &amp; INFORMATION WEB PORTAL USING PROMPT ENGINEERING PRINCIPLES
+    </h1>
+    <div class=cover-project-sub>
+      A Comprehensive Institutional Web Engineering Project Developed for Alshifa University
+    </div>
+
+    <div class=cover-details-box>
+      <table class=details-table>
+        <tr>
+          <td class=label>Subject Name:</td>
+          <td class=value>Prompt Engineering</td>
+        </tr>
+        <tr>
+          <td class=label>Student Name:</td>
+          <td class=value>Alshifa</td>
+        </tr>
+        <tr>
+          <td class=label>Register Number (RRN):</td>
+          <td class=value>250282601011</td>
+        </tr>
+        <tr>
+          <td class=label>Class &amp; Section:</td>
+          <td class=value>MCA 'A' - Final Year</td>
+        </tr>
+        <tr>
+          <td class=label>Degree:</td>
+          <td class=value>Master of Computer Applications (MCA)</td>
+        </tr>
+        <tr>
+          <td class=label>Department:</td>
+          <td class=value>Department of Computer Applications</td>
+        </tr>
+        <tr>
+          <td class=label>Project Title:</td>
+          <td class=value>Alshifa University Official Web Portal</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class=cover-footer>
+    Technical Project Report &bull; React.js 19, Modern CSS3 &amp; Vite 8 &bull; Handcrafted Architecture
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS & ABSTRACT -->
+<div class=page>
+  <h1 class=section-heading>TABLE OF CONTENTS</h1>
+  <div class=toc-list style=margin-top: 16px;>
+    <div class=toc-item><div><span class=num>1.</span> Abstract &amp; Executive Summary</div><div>Page 2</div></div>
+    <div class=toc-item><div><span class=num>2.</span> Introduction &amp; Problem Statement</div><div>Page 2</div></div>
+    <div class=toc-item><div><span class=num>3.</span> Role of Prompt Engineering in Project Development</div><div>Page 3</div></div>
+    <div class=toc-item><div><span class=num>4.</span> Software Requirements Specification (SRS)</div><div>Page 3</div></div>
+    <div class=toc-item><div><span class=num>5.</span> System Architecture &amp; Technology Stack</div><div>Page 4</div></div>
+    <div class=toc-item><div><span class=num>6.</span> Detailed Module Breakdown (All 12 Modules)</div><div>Page 5</div></div>
+    <div class=toc-item><div><span class=num>7.</span> Iterative Prompt Engineering Lifecycle &amp; Case Studies</div><div>Page 6</div></div>
+    <div class=toc-item><div><span class=num>8.</span> Component Hierarchy &amp; Data Flow</div><div>Page 6</div></div>
+    <div class=toc-item><div><span class=num>9.</span> Responsive UI/UX Design System</div><div>Page 7</div></div>
+    <div class=toc-item><div><span class=num>10.</span> Testing, Verification &amp; Performance Metrics</div><div>Page 7</div></div>
+    <div class=toc-item><div><span class=num>11.</span> Conclusion &amp; Future Scope</div><div>Page 8</div></div>
+    <div class=toc-item><div><span class=num>12.</span> Appendix: Execution &amp; Setup Guide</div><div>Page 8</div></div>
+  </div>
+
+  <div style=margin-top: 32px;>
+    <h1 class=section-heading>1. ABSTRACT</h1>
+    <p>
+      Modern academic institutions demand digital interfaces that communicate institutional credibility, streamline admissions, provide transparent academic resources, and deliver exceptional user experiences across all devices. This project presents the end-to-end design, architectural formulation, and front-end engineering of a comprehensive, responsive web portal for <strong>Alshifa University</strong>.
+    </p>
+    <p>
+      Developed as part of the <strong>Prompt Engineering</strong> curriculum in the Master of Computer Applications (MCA) program, this project demonstrates how declarative prompt specifications, structured requirement decomposition, iterative persona prompting, and constraint-based prompting can be leveraged in pair-programming with generative AI agents to build production-grade web systems. Built with <strong>React.js 19</strong>, <strong>Vite 8</strong>, and modern <strong>vanilla CSS3</strong> with zero unnecessary heavy third-party UI libraries, the portal encompasses 12 feature-rich functional views, an interactive Student Portal demo, an online admission application workflow, dynamic search and filtering mechanisms, and a collegiate masthead design.
+    </p>
+
+    <h1 class=section-heading>2. INTRODUCTION &amp; PROBLEM STATEMENT</h1>
+    <h2 class=sub-heading>2.1 Problem Statement</h2>
+    <p>Traditional university websites frequently suffer from:</p>
+    <ul>
+      <li>Cluttered navigation layouts where critical links are buried under deep submenus.</li>
+      <li>Poor mobile and tablet responsiveness resulting in broken horizontal overflow layouts.</li>
+      <li>Heavy dependencies on monolithic UI component libraries that bloat bundle sizes and degrade initial load speeds.</li>
+      <li>Disconnected information architecture where prospective students, current scholars, and parents cannot find relevant information efficiently.</li>
+    </ul>
+
+    <h2 class=sub-heading>2.2 Proposed Solution</h2>
+    <p>The <strong>Alshifa University Web Portal</strong> addresses these challenges by implementing:</p>
+    <ol>
+      <li><strong>Modular Frontend Architecture:</strong> Reusable React components styled with clean, native CSS variables.</li>
+      <li><strong>Two-Tiered Collegiate Header System:</strong> A prominent Grand University Masthead paired with a streamlined, sticky navigation bar starting directly with the 'Home' link.</li>
+      <li><strong>Centralized State &amp; Data Layer:</strong> A single source of truth (<code>collegeData.js</code>) governing all 12 modules.</li>
+      <li><strong>Immersive Collegiate Visual Identity:</strong> Deep Collegiate Navy (<code>#0a192f</code>) and Academic Royal Gold (<code>#d4af37</code>), backed by classic serif and modern sans-serif typography (<code>Cinzel</code> and <code>Inter</code>).</li>
+    </ol>
+  </div>
+</div>
+
+<!-- CHAPTER 3 & 4 -->
+<div class=page>
+  <h1 class=section-heading>3. ROLE OF PROMPT ENGINEERING IN PROJECT DEVELOPMENT</h1>
+  <p>
+    Prompt Engineering is the discipline of structuring inputs to AI models to achieve deterministic, reliable, and high-quality software outputs. In this MCA project, Prompt Engineering was applied systematically across four distinct development cycles:
+  </p>
+
+  <h2 class=sub-heading>3.1 Persona &amp; Role-Prompting Directives</h2>
+  <p>
+    The agent was instructed with a strict system persona: <em>Act as a Senior React Architect building a modern, responsive college website using pure vanilla CSS with zero heavy UI libraries.</em> This eliminated unwanted dependencies (such as Bootstrap or Tailwind) and enforced native CSS Grid and Flexbox layouts.
+  </p>
+
+  <h2 class=sub-heading>3.2 Modular Decomposition &amp; Chain-of-Thought Formulation</h2>
+  <p>
+    Rather than generating the entire university application in a single monolithic prompt, the project was decomposed into distinct logical milestones:
+  </p>
+  <ul>
+    <li><strong>Milestone 1:</strong> Design Tokens &amp; Master Layout (Navbar, Top Ticker, Footer).</li>
+    <li><strong>Milestone 2:</strong> Institutional Showcase (Home, About, Chronological Timeline).</li>
+    <li><strong>Milestone 3:</strong> Academic &amp; Research Directory (Departments, Course Finder, Faculty).</li>
+    <li><strong>Milestone 4:</strong> Interactive Scholar Experience (Admissions Modal, Student Portal Dashboard, Gallery Lightbox).</li>
+  </ul>
+
+  <h2 class=sub-heading>3.3 Context-Anchored Refactoring Prompts</h2>
+  <p>
+    When user requests required dynamic updates (e.g., integrating the Principal's photograph and rebranding to <strong>Alshifa University</strong>), prompts were formulated with explicit file paths and replacement bounds, ensuring that updates to <code>collegeData.js</code>, <code>Navbar.jsx</code>, <code>Footer.jsx</code>, and page templates remained fully synchronized.
+  </p>
+
+  <h2 class=sub-heading>3.4 Constraint-Driven Visual Hierarchy Refinement</h2>
+  <p>
+    The prompt <em>in before home nav bar remove college name and logo</em> demonstrated negative constraint prompting. The model preserved the top grand masthead while stripping the duplicate brand logo and text inside the sticky navbar, allowing all 11 navigation links to fit cleanly across desktop viewports.
+  </p>
+
+  <div class=callout-blue>
+    <strong>Prompt Engineering Takeaway:</strong> High-precision declarative prompts that specify both <em>what to include</em> and <em>what to avoid</em> produce maintainable, lint-clean React code with zero technical debt.
+  </div>
+
+  <h1 class=section-heading>4. SOFTWARE REQUIREMENTS SPECIFICATION (SRS)</h1>
+  <table class=data-table>
+    <thead>
+      <tr>
+        <th style=width: 25%;>Requirement ID</th>
+        <th style=width: 35%;>Module / Feature</th>
+        <th style=width: 40%;>Specification &amp; Validation Criteria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>FR-01: Identity</strong></td>
+        <td>Collegiate Masthead</td>
+        <td>Official crest, Alshifa University title, NAAC A++ (3.84) &amp; NIRF #24 badges.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-02: Admissions</strong></td>
+        <td>Interactive Modal</td>
+        <td>Form validation, program selector, fee calculation, application token receipt.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-03: Academics</strong></td>
+        <td>Course &amp; Dept Directory</td>
+        <td>8 departments, UG/PG search filter, syllabus preview modal.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-04: Faculty</strong></td>
+        <td>Faculty Roster</td>
+        <td>Search by professor name/dept, research count, email contact.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-05: Scholar Portal</strong></td>
+        <td>Student Dashboard</td>
+        <td>Simulated student view: live timetable, attendance rings, fees, CGPA (8.92).</td>
+      </tr>
+      <tr>
+        <td><strong>FR-06: Infrastructure</strong></td>
+        <td>Facilities Center</td>
+        <td>10 facility centers with technical specifications and capacity metrics.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-07: Placement</strong></td>
+        <td>Corporate Relations</td>
+        <td>96.4% placement rate, &#8377;48.5 LPA peak package, 340+ recruiter logos.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-08: Media &amp; News</strong></td>
+        <td>Events &amp; Gallery</td>
+        <td>Filterable newsroom with RSVP registration; 5-category photo lightbox.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHAPTER 5 & 6 -->
+<div class=page>
+  <h1 class=section-heading>5. SYSTEM ARCHITECTURE &amp; TECHNOLOGY STACK</h1>
+  <p>
+    The architecture adheres to a single-page application (SPA) model powered by React 19, with hash-based route synchronization and state-driven conditional page rendering:
+  </p>
+
+  <pre>
++------------------------------------------------------------------+
+|                     ALSHIFA UNIVERSITY CLIENT                    |
++------------------------------------------------------------------+
+                                 |
+         +-----------------------+-----------------------+
+         |                                               |
++------------------+                           +-------------------+
+|  PRESENTATION    |                           |     DATA LAYER    |
+|   (React 19)     |                           | (collegeData.js)  |
++------------------+                           +-------------------+
+         |                                               |
+  +------+------+                               +--------+--------+
+  |             |                               |                 |
+[Components]  [Pages (12)]                 [College Info]   [Academic Data]
+  - Navbar      - Home                       - Crest / Logo   - Departments
+  - Masthead    - About                      - Principal Bio  - Courses
+  - Footer      - Departments                - Stats/Rankings - Faculty
+  - Modals      - Courses, etc.                               - Placements
+         |                                                        |
+         +-----------------------+--------------------------------+
+                                 |
+                     +-----------------------+
+                     |   BUILD &amp; RUNTIME     |
+                     |   (Vite 8 + CSS3)     |
+                     +-----------------------+
+  </pre>
+
+  <h2 class=sub-heading>Technology Stack Summary</h2>
+  <table class=data-table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technology</th>
+        <th>Version</th>
+        <th>Justification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Frontend Framework</td>
+        <td>React.js</td>
+        <td>19.0.0</td>
+        <td>Declarative state handling, efficient virtual DOM diffing, component reusability.</td>
+      </tr>
+      <tr>
+        <td>Build Tool / Bundler</td>
+        <td>Vite</td>
+        <td>8.2.2</td>
+        <td>Instant HMR, native ES module compilation, optimized production minification.</td>
+      </tr>
+      <tr>
+        <td>Style Architecture</td>
+        <td>Pure CSS3</td>
+        <td>Modern</td>
+        <td>Native CSS variables, zero runtime CSS overhead, full responsive control.</td>
+      </tr>
+      <tr>
+        <td>Vector Iconography</td>
+        <td>Lucide React</td>
+        <td>1.16.0</td>
+        <td>Lightweight, tree-shakeable SVG icons for academic badges, hotlines, and indicators.</td>
+      </tr>
+      <tr>
+        <td>Typography</td>
+        <td>Google Fonts</td>
+        <td>Web CDN</td>
+        <td>'Cinzel' (prestigious Roman serif) and 'Inter' (high legibility sans-serif).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h1 class=section-heading>6. DETAILED MODULE BREAKDOWN (12 PAGES)</h1>
+  <ul>
+    <li><strong>1. Home (<code>Home.jsx</code>):</strong> Features the top hero banner with statistics counters, the official Principal Desk card with photograph, academic spotlights, recruiter marquee, and testimonials.</li>
+    <li><strong>2. About (<code>About.jsx</code>):</strong> History since 1984 under the Alshifa Educational Trust, chronological milestones timeline, vision, mission, and the Principal's complete address.</li>
+    <li><strong>3. Departments (<code>Departments.jsx</code>):</strong> Detailed view of 8 streams (CSE, IT, ECE, MECH, CIVIL, AI&amp;DS, MBA, MCA) with HOD profiles and lab highlights.</li>
+    <li><strong>4. Courses (<code>Courses.jsx</code>):</strong> Searchable UG and PG program catalog with tuition fees, eligibility rules, and syllabus modal drawer.</li>
+    <li><strong>5. Admissions (<code>Admissions.jsx</code>):</strong> 4-step admission process, fee structure, scholarship criteria, and application modal.</li>
+    <li><strong>6. Faculty (<code>Faculty.jsx</code>):</strong> Searchable directory of 16+ professors with Ph.D. credentials and research counts.</li>
+    <li><strong>7. Facilities (<code>Facilities.jsx</code>):</strong> 10 infrastructure centers (Central Digital Library, HPC clusters, Olympic Sports, Hostels).</li>
+    <li><strong>8. Placements (<code>Placements.jsx</code>):</strong> Placement statistics (96.4% placement, &#8377;48.5 LPA peak package, 340+ recruiters).</li>
+    <li><strong>9. Events &amp; News (<code>EventsNews.jsx</code>):</strong> Categorized news, administrative circulars, and event RSVP modal.</li>
+    <li><strong>10. Gallery (<code>Gallery.jsx</code>):</strong> 5-category campus photography gallery with an interactive full-screen Lightbox.</li>
+    <li><strong>11. Student Portal (<code>StudentPortal.jsx</code>):</strong> Scholar dashboard with live timetable, subject-wise attendance rings, grades, and fee receipts.</li>
+    <li><strong>12. Contact (<code>Contact.jsx</code>):</strong> Contact forms, administrative phone directory, and embedded Google Map iframe.</li>
+  </ul>
+</div>
+
+<!-- CHAPTER 7, 8 & 9 -->
+<div class=page>
+  <h1 class=section-heading>7. ITERATIVE PROMPT ENGINEERING LIFECYCLE</h1>
+  <p>
+    The lifecycle of this project incorporated progressive refinement cycles:
+  </p>
+  <ul>
+    <li><strong>Cycle 1 (Foundation):</strong> Generating core routing, color system, and high-level component tree.</li>
+    <li><strong>Cycle 2 (Deep Module Implementation):</strong> Populating all 12 modules with realistic institutional data and state interactions.</li>
+    <li><strong>Cycle 3 (Branding &amp; Assets):</strong> Rebranding to <strong>Alshifa University</strong> and mounting the custom portrait photograph into <code>public/principal.jpg</code>.</li>
+    <li><strong>Cycle 4 (Visual Hierarchy Refinement):</strong> Structuring the Grand Masthead above the navigation bar and removing redundant branding before the 'Home' menu link.</li>
+  </ul>
+
+  <h1 class=section-heading>8. COMPONENT HIERARCHY &amp; DATA FLOW</h1>
+  <pre>
+src/
+├── main.jsx (ReactDOM root mount)
+└── App.jsx (Top-level state: currentPage, modal states)
+    ├── components/Navbar.jsx
+    │   ├── Top Notice Bar (Hotlines &amp; Badges)
+    │   ├── University Masthead (Logo, Alshifa University title, Accreditations)
+    │   └── Sticky Navigation Bar (11 Page Links + Portal + Apply)
+    ├── pages/ [Rendered conditionally based on currentPage state]
+    │   ├── Home.jsx, About.jsx, Departments.jsx, Courses.jsx, etc.
+    ├── components/ApplyModal.jsx (Global admission form modal)
+    ├── components/DepartmentModal.jsx (Detailed department view)
+    └── components/Footer.jsx (Global collegiate footer)
+  </pre>
+
+  <h1 class=section-heading>9. RESPONSIVE UI/UX DESIGN SYSTEM</h1>
+  <table class=data-table>
+    <thead>
+      <tr>
+        <th>Viewport Width</th>
+        <th>Target Devices</th>
+        <th>Layout Adaptations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>&gt; 1024px</strong></td>
+        <td>Desktops / Laptops</td>
+        <td>Full 3-column &amp; 4-column grids, expanded masthead with accreditation pills, horizontal navigation.</td>
+      </tr>
+      <tr>
+        <td><strong>861px &ndash; 1024px</strong></td>
+        <td>Tablets (Landscape/Portrait)</td>
+        <td>2-column adaptive layout, compact masthead metadata, inline action buttons.</td>
+      </tr>
+      <tr>
+        <td><strong>&le; 860px</strong></td>
+        <td>Smartphones / Small Tablets</td>
+        <td>Single-column vertical stack, slide-down mobile navigation drawer, fluid font scaling.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CHAPTER 10, 11 & 12 -->
+<div class=page>
+  <h1 class=section-heading>10. TESTING, VERIFICATION &amp; PERFORMANCE METRICS</h1>
+
+  <h2 class=sub-heading>10.1 Production Build Metrics</h2>
+  <p>The application was bundled for production using Vite 8 with Rollup:</p>
+  <pre>
+vite v8.2.2 building client environment for production...
+transforming...
+&#x2713; 1875 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.95 kB │ gzip:   0.50 kB
+dist/assets/index-CMkov0Os.css   16.10 kB │ gzip:   3.76 kB
+dist/assets/index-CU4Ogk_N.js   439.26 kB │ gzip: 118.20 kB
+&#x2713; built in 555ms
+  </pre>
+
+  <h2 class=sub-heading>10.2 Static Code Analysis (oxlint)</h2>
+  <p>Code quality and linting verification was performed using the Rust-based <code>oxlint</code> tool:</p>
+  <pre>
+$ npx oxlint
+Finished in 220ms on 48 files with 0 errors and 0 warnings.
+  </pre>
+
+  <h2 class=sub-heading>10.3 Asset Verification</h2>
+  <p>The Principal's photograph was confirmed active and accessible via HTTP GET:</p>
+  <pre>
+Endpoint:       http://localhost:5173/principal.jpg
+HTTP Status:    200 OK
+Content-Type:   image/jpeg
+Content-Length: 141,971 bytes
+  </pre>
+
+  <h1 class=section-heading>11. CONCLUSION &amp; FUTURE ENHANCEMENTS</h1>
+  <p>
+    This project demonstrates how <strong>Prompt Engineering</strong> can bridge high-level system requirements and clean, production-grade frontend software engineering. By employing role-prompting, constraint enforcement, context persistence, and progressive refactoring, an institutional portal for <strong>Alshifa University</strong> was built with exceptional quality, zero third-party UI bloat, and total responsive fidelity.
+  </p>
+
+  <h1 class=section-heading>12. APPENDIX: SETUP &amp; EXECUTION GUIDE</h1>
+  <pre>
+# 1. Navigate to the project directory
+cd C:\Users\Admin\.gemini\antigravity\scratch\college-website
+
+# 2. Install dependencies (if setting up on a new environment)
+npm install
+
+# 3. Start the local development server
+npm run dev
+
+# 4. Open the browser and visit:
+http://localhost:5173/
+  </pre>
+
+  <div class=callout style=margin-top: 30px;>
+    <strong>Project Submission Signoff:</strong><br>
+    Candidate: <strong>Alshifa</strong> &bull; RRN: <strong>250282601011</strong> &bull; Class: <strong>MCA 'A' - Final Year</strong><br>
+    Course: <strong>Prompt Engineering</strong> &bull; Department of Computer Applications
+  </div>
+</div>
+
+</body>
+</html>
